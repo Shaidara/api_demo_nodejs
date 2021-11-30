@@ -3,7 +3,7 @@ Welcome on this fabulous job posting API
 ## Instalation
 
 ```
-Retrieve the project : git clone
+Retrieve the project : git clone https://github.com/Shaidara/exercise_backend.git
 
 1. If you do not have docker intalled, you can do it [here|https://docs.docker.com/get-docker/]
 2. in a command prompt navigate to the project root
@@ -24,6 +24,8 @@ After connecting to database, you can run file excercise-backend/database/data_e
 
 ```
 
+You can also use a local DB with this project, simply provide valid database information in ".env" file et run command : npm start
+
 ## Architecture
 
 For this API, I've used a DDD (domain driven design) for the project. I have the following layers :
@@ -37,6 +39,7 @@ I've used a PostgreSQL database for the purpose of this exercise.
 ## Test endpoints
 
 **Automated tests Postman**
+
 You can use postman to test endpoints by importing the following files into your postman :
 
     - ./exercise-backend/postman/Exercise backend.postman_collection.json
