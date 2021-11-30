@@ -1,30 +1,27 @@
-Welcome on this fabulous job posting API
+# Welcome on this fabulous job posting API
 
 ## Instalation
 
-```
-Retrieve the project : git clone https://github.com/Shaidara/exercise_backend.git
+Clone the project : git clone *https://github.com/Shaidara/exercise_backend.git*
 
-1. If you do not have docker intalled, you can do it [here|https://docs.docker.com/get-docker/]
-2. in a command prompt navigate to the project root
-3. run : npm install
-4. run : docker-compose build
-5. run : docker run local
+1. If you do not have docker intalled, you can do it [here](https://docs.docker.com/get-docker/)
+2. In a command prompt navigate to the project root : **cd ./exercise_backend**
+3. Run : **npm install**
+4. run : **docker-compose build**
+5. run : **docker run local**
 
 At this stage you must be able to see the message "Welcome to the job post API !" when you go onto : http://localhost:8888
 
 As I used a posgres sql, you can connect to the docker database container via PgAdmin with these information :
 
-HOST: Your local IP address
-Port: 5432
-Username: admin
-Password: adminpass
+- HOST: Your local IP address
+- Port: 5432
+- Username: admin
+- Password: adminpass
 
 After connecting to database, you can run file excercise-backend/database/data_exercise.sql
 
-```
-
-You can also use a local DB with this project, simply provide valid database information in ".env" file et run command : npm start
+You can also use a local DB with this project, simply provide valid database information in _".env"_ file et run command : _npm start_
 
 ## Architecture
 
