@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  excercise-backend:
+    build:
+      context: .
+      target: development
+    container_name: api-services
+    environment:      
+      - NODE_ENV
+      - DB_NAME
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST
+      - DB_PORT
+      - APP_PORT=8888
+    ports:
+      - 8888:8888
+    depends_on:
+      - exercise-backend-db
+    volumes:
+      - "./:/app/"
+
+  exercise-backend-db:
+    image: postgres:12
+    container_name: exercise-backend-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - exercise-backend-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+volumes:
+  exercise-backend-data:

@@ -1,2 +1,4 @@
+import Server from "./server";
 
-console.log('Have some jalebi fafda. They are yummy! 😋');
+const app = new Server();
+app.start();

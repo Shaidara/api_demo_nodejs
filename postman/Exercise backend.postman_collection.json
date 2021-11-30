@@ -1,0 +1,1396 @@
+{
+	"info": {
+		"_postman_id": "f9b5c6e5-63b9-409c-bcc6-e5260e564076",
+		"name": "Exercise backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "Create job post - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Sr android Dev\",\r\n        \"description\": \"An amzing job !\",\r\n        \"location\": \"London\",\r\n        \"byUser\": \"foo bar\",\r\n        \"hourlyRate\": 105\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - exceed max hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max hourlyRate exceeding\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": 10000\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - negative hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for negative hourlyRate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": -25\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - exceed max length byUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max length byUser\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message.validationErrors.length).to.equal(1);\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"byUser must have 255 characters or less !\",\r",
+									"                \"param\": \"byUser\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that m\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - missing hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for empty hourlyRate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - empty location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for empty location\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"location can not be null or empty !\",\r",
+									"                \"param\": \"location\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"      \",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - exceed max length title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max length title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"title must have 50 characters or less !\",\r",
+									"                \"param\": \"title\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significan\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - exceed max length location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for invalid length location\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"location must have 150 characters or less !\",\r",
+									"                \"param\": \"location\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significan\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - Invalid description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valide message for description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"description can not be null or empty !\",\r",
+									"                \"param\": \"description\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create job post - Invalid title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valide message for title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"title can not be null or empty !\",\r",
+									"                \"param\": \"title\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Job posts",
+			"item": [
+				{
+					"name": "Get a valid job post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/api/job-post/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an invalid job post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should return 404 for non existant job post\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Should return valid message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Job post \" + pm.environment.get(\"invalid_jobpost_id\") + \" not found !\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/api/job-post/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{invalid_jobpost_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all job post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Sr android Dev Updated\",\r\n        \"description\": \"An amzing job !\",\r\n        \"location\": \"London\",\r\n        \"byUser\": \"foo bar\",\r\n        \"hourlyRate\": 105\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Missing id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for missing id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Invalide id provided !\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": 10000\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for missing id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Invalide id provided !\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"thezrt\",\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": 10000\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exceed max hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max hourlyRate exceeding\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": 10000\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "negative hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for negative hourlyRate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\",\r\n        \"hourlyRate\": -25\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exceed max length byUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max length byUser\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message.validationErrors.length).to.equal(1);\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"byUser must have 255 characters or less !\",\r",
+									"                \"param\": \"byUser\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that m\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "missing hourly rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for empty hourlyRate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"The hourly rate must be grater than 0 and less than 9999.99 !\",\r",
+									"                \"param\": \"hourlyRate\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Québec (QC)\",\r\n        \"byUser\": \"Alain Diarra\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "empty location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for empty location\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"location can not be null or empty !\",\r",
+									"                \"param\": \"location\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"      \",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exceed max length title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for max length title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"title must have 50 characters or less !\",\r",
+									"                \"param\": \"title\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significan\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exceed max length location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valid message for invalid length location\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"location must have 150 characters or less !\",\r",
+									"                \"param\": \"location\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significan\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valide message for description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"description can not be null or empty !\",\r",
+									"                \"param\": \"description\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"Software engineer\",\r\n        \"description\": \"\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should have valide message for title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql({\r",
+									"        \"validationErrors\": [\r",
+									"            {\r",
+									"                \"message\": \"title can not be null or empty !\",\r",
+									"                \"param\": \"title\"\r",
+									"            }\r",
+									"        ]\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7,\r\n        \"title\": \"\",\r\n        \"description\": \"About the job\\nAt Pattern we're building our founding engineering team to power the company during our hyper growth stage.\\n\\n\\nPattern is a technology-based staffing platform that connects gig workers with jobs around them, on demand, every single hour. Our platform gives businesses like retail chains and warehouses instant access to pre-screened, trained temporary workforce that makes staff management more transparent and efficient.\\n\\n\\nThis is an exciting emerging space (you may see it referred to as digital staffing) that has seen significant interest and investment from venture capitalists. Pattern is one of the break-out companies in this space that is using technology to disrupt the existing, traditional staffing companies.\\n\\n\\nPattern is operating in stealth mode. It has raised several million dollars in funding from venture capitalists. The company is experiencing exponential growth and every day is an exciting, fun, energizing day of work. There are fifty employees at the company across New York, Toronto and Vancouver.\\n\\n\\nAbout the Role\\n\\n\\nFrom day one, you'll work closely with a focused product team using React & Typescript on the frontend and Node & Typescript on the backend. You'll be a key technical contributor during product discovery and definition, and you'll own technical design, implementation and delivery for significant parts of the product.\\n\\n\\nDuring your first year, you'll make foundational architecture and technology decisions while taking on a wide variety of product and technical challenges. As we scale, you'll have the opportunity to grow into either a technical leadership role at the staff level or an engineering management role.\\n\\n\\nYour responsibilities include:\\n\\n\\nMaking key contributions in solving our core problems, such as:\\nCan we automate our shift dispatching systems based on the data we have?\\nCan we make scheduling and managing workers incredibly simple?\\nCan we develop tools to optimally utilize our inventory of gig workers?\\nCan we build financial products for our gig workers?\\nDesigning and implementing backend services, focused on future extensibility, reliability and ease of adoption\\nContinuously push yourself and us to obsessively improve product quality, user experience, and efficient deliver\\nHelp build a great product and engineering team dedicated to continuously delivering value to our customers\\n\\nYou are excited about this opportunity because you will...\\n\\n\\nJoin a fast-growing startup and grow right along with us\\nDeliver great products for our all our customers\\nTake on significant technical challenges and have a large impact\\nGet the chance to work on cutting-edge technologies and use world-class tooling to get the job done\\nHave the ability to shape and improve our engineering culture\\n\\nWe are excited about you because...\\n\\n\\nYou have 3+ years working as a backend software engineer\\nYou are familiar with TypeORM (or other equivalent ORM), Relational Databases, NodeJS, TypeScript, Docker, Git and Pull Request flow (GitHub or GitLab or BitBucket)\\nYou have experience building performant, maintainable, and scalable REST APIs\\nYou have experience writing unit and integration tests\\nYou are able to learn quickly, work independently, and consistently get stuff done\\nYou are deeply dedicated to product and engineering excellence, with strong, well-considered opinions on the stuff that matters\\nYou are obsessed about customers and their problems, and passionate about delivering the best product for them\\nYou are an effective collaborator who routinely goes the extra mile to make other people successful\\nYou have a solid understanding of programming fundamentals and computer systems\\n\\nWhy we might be a great fit for you:\\n\\n\\nWe're taking on tough, systemic problems on both sides of the labor market that don't have easy solutions. You will have impact here.\\nWe'll grant you a lot of autonomy and trust, and back it up with meaningful empowerment and support. You won't be held back here.\\nWe care about outcomes, not output, and since we're all very mission-driven and work hard, we make sure our work is meaningful.\\nWe care deeply about diversity and consider it absolutely critical to our success, and we do the hard work to make that true.\\n\\nWhy we might not be a fit for you:\\n\\n\\nWe're obsessed with our customers, and that drives the bulk of our decisions. If you can't see yourself adopting that mindset, it won't work out.\\nWe're an early stage company with great bones, but we have lots of rough edges. You need to be excited about building something from nothing.\\nWe know where we're headed, but we're still figuring out how to get there. You need to be ok with plans and priorities shifting.\\n\\nCompensation and benefits:\\n\\n\\nCompetitive salary and stock options\\nUnlimited PTO with recommended minimums\\nGenerous extended health and dental care\\n\\nWe are an equal opportunity employer and do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.\",\r\n        \"location\": \"Montréal (Remote)\",\r\n        \"byUser\": \"Aliou Cissé\",\r\n        \"hourlyRate\": \"15.50\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/job-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "Valid job post",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url:\"http://localhost:8888/api/job-post\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"        \"title\": \"Sr android Dev\",\r",
+									"        \"description\": \"An amzing job !\",\r",
+									"        \"location\": \"London\",\r",
+									"        \"byUser\": \"foo bar\",\r",
+									"        \"hourlyRate\": 105\r",
+									"    })       \r",
+									"        }\r",
+									"    }, function (err, res) {\r",
+									"    console.log(res.json());\r",
+									"    pm.environment.set(\"delete_test_id\", res.json().id)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Should delete existing job post\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.equal(\"Job post \"+ pm.environment.get(\"delete_test_id\") +\" successfully deleted !\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/api/job-post/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{delete_test_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid job post error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should return 400 for non existant job post\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Should return valid message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Invalid job post provided : \" + pm.environment.get(\"invalid_jobpost_id\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/api/job-post/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"job-post",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{invalid_jobpost_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
